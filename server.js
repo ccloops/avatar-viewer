@@ -18,6 +18,7 @@ express()
             const user = { login, id, avatar_url };
             if (login[0].toLowerCase() === 'a') {
               superagent.get(followers_url)
+              .set('Authorization', `token ${GITHUB_TOKEN}`)
                 .then(({ body: followers }) => {
                   user.followers = followers.map(({ login }) => login);
                   users.push(user);
