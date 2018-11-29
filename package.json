@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "jest --verbose --coverage",
-    "start": "parcel build index.html && node server.js"
+    "start": "parcel build index.html && node server.js"  
   },
   "repository": {
     "type": "git",
