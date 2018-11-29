@@ -16,9 +16,11 @@ export default class App extends Component {
     this.state = { avatars: null }
     superagent.get('/avatars')
       .then(({ body: avatars }) => this.setState({ avatars }))
+      .catch(err => console.log('error'));
   }
 
   render() {
+    console.log(this.state.avatars);
     if (this.state.avatars) {
       return (
         <Grid>

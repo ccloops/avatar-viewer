@@ -18,22 +18,23 @@ express()
             const user = { login, id, avatar_url };
             if (login[0].toLowerCase() === 'a') {
               superagent.get(followers_url)
-                .then(({ body }) => {
-                  user.followers = body;
+                .then(({ body: followers }) => {
+                  user.followers = followers.map(({ login }) => login);
                   users.push(user);
                   resolve();
                 })
+                .catch(err => reject(err));
             } else {
-              delete user.login;
+              // delete user.login;
               users.push(user) && resolve();
             }
           });
-        })
-        Promise.all([...Object.values(promises)]).then(() => res.send(users));
+        });
+        Promise.all([...Object.values(promises)])
+          .then(() => res.send(users))
+          .catch(({ response }) => console.log(response.body.message) || res.status(500).send());
       })
-      .catch((err) => {
-        res.end();
-      })
+      .catch(({ response }) => console.log(response.body.message) || res.status(500).send());
   })
   .get('*', (req, res) => {
     res.sendFile(path.join(__dirname, './dist/index.html'))
