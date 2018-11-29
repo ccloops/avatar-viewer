@@ -1,0 +1,26 @@
+{
+  "name": "avatar-viewer",
+  "version": "1.0.0",
+  "description": "Avatar Viewer ",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest --verbose --coverage"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ccloops/avatar-viewer.git"
+  },
+  "keywords": [
+    "Avatar",
+    "Viewer"
+  ],
+  "author": "Catherine Looper",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ccloops/avatar-viewer/issues"
+  },
+  "homepage": "https://github.com/ccloops/avatar-viewer#readme",
+  "dependencies": {
+    "dotenv": "^6.1.0"
+  }
+}
