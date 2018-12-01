@@ -5,6 +5,14 @@ require('dotenv').config();
 const PORT = process.env.PORT || 3000;
 const GITHUB_TOKEN = process.env.GITHUB_TOKEN;
 
+const decimateArray = (arr) => arr.reduce((acc, v, i) => {
+  if (!(i % 10)) {
+    acc.push([])
+  }
+  acc[acc.length - 1].push(v)
+  return acc;
+}, []);
+
 express()
   .use(express.static('dist'))
   .get('/avatars', (req, res) => {
@@ -32,7 +40,7 @@ express()
           });
         });
         Promise.all([...Object.values(promises)])
-          .then(() => res.send(users))
+          .then(() => res.send(decimateArray(users)))
           .catch(({ response }) => console.log(response.body.message) || res.status(500).send());
       })
       .catch(({ response }) => console.log(response.body.message) || res.status(500).send());

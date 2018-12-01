@@ -3,21 +3,34 @@ import styled from 'styled-components';
 
 import Avatar from './Avatar.js';
 
-const Wrapper = styled.div`
+const Grid = styled.div`
+  padding: 5px;
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
 `;
 
-export default ({ avatars, displayedFollowers, renderFollowers }) => (
-  <Wrapper>
-    {avatars.map(({id, avatar_url: avatarUrl, login, followers }) =>
-      <Avatar 
-        key={id} 
-        id={id}
-        avatarUrl={avatarUrl}
-        hasFollowers={!!followers} 
-        renderFollowers={renderFollowers}
-      />
+const Row = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  width: 100%;
+`
+
+export default ({ avatars, ...props }) => (
+  <Grid>
+    {avatars.map(subArray => 
+      <Row>
+        {subArray.map(({ id, ...avatarData }) => (
+          <Avatar
+            key={id}
+            id={id}
+            {...props}
+            {...avatarData}
+          />
+        ))}
+      </Row>
     )}
-  </Wrapper> 
+  </Grid> 
 )
