@@ -2,26 +2,19 @@ import React, { Component } from 'react';
 import superagent from 'superagent';
 import styled from 'styled-components';
 
-const Grid = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-`;
-
-const Avatar = styled.img`
-    width: 8em;
-    height: 8em;
-`;
+import Grid from './Grid.js';
+import Avatar from './Avatar.js';
 
 export default class App extends Component {
   constructor(props) {
     super(props);
     this.state = { 
       avatars: null,
-      followersAreDisplayed: false,
+      displayedFollowers: [],
      }
   
     this.fetchAvatars = this.fetchAvatars.bind(this);
-    this.displayFollowers = this.displayFollowers.bind(this);
+    this.renderFollowers = this.renderFollowers.bind(this);
     this.fetchAvatars();
   }
 
@@ -31,22 +24,24 @@ export default class App extends Component {
     .catch(err => console.log('error'));
   }
 
-  displayFollowers(id) {
+  renderFollowers(id) {
     this.state.avatars.forEach(avatar => {
       if(avatar.id === id && avatar.followers) {
-        console.log('avatar.followers', avatar.followers);
+        console.log('avatar.followers', avatar.followers); 
+        this.setState({ followers: avatar.followers });
       }
     })
   }
 
   render() {
-    console.log(this.state.avatars);
-    if (this.state.avatars) {
+    const { avatars, displayedFollowers } = this.state;
+    if (avatars) {
       return (
-        <Grid>
-          {this.state.avatars.map(({ id, avatar_url, login }) =>
-            <Avatar key={id} src={avatar_url} onMouseEnter={ () => this.displayFollowers(id) } />
-          )}
+        <Grid 
+          avatars={avatars}
+          displayedFollowers={displayedFollowers} 
+          renderFollowers={this.renderFollowers}
+        >
         </Grid>
       )
     } else {
