@@ -4,6 +4,7 @@ import styled from 'styled-components';
 
 import Grid from './Grid.js';
 import Avatar from './Avatar.js';
+import List from './List.js';
 
 const IMG_MARGIN = 5;
 
@@ -12,12 +13,14 @@ export default class App extends Component {
     super(props);
     this.state = { 
       avatars: null,
-      displayedFollowers: [],
+      displayedFollowers: null,
+      selectedAvatar: null,
      }
   
     this.fetchAvatars = this.fetchAvatars.bind(this);
-    this.renderFollowers = this.renderFollowers.bind(this);
+    this.handleAvatarHover = this.handleAvatarHover.bind(this);
     this.getWindowProperties = this.getWindowProperties.bind(this);
+    this.handleBackClick = this.handleBackClick.bind(this);
     this.fetchAvatars();
   }
 
@@ -35,28 +38,45 @@ export default class App extends Component {
       .catch(err => console.log(err));
   }
 
-  renderFollowers(id) {
-    this.state.avatars.forEach(avatar => {
-      if(avatar.id === id && avatar.followers) {
-        this.setState({ followers: avatar.followers });
+  handleAvatarHover(id) {
+    this.state.avatars.forEach(avatarArray => {
+      const avatar = avatarArray.find(avatar => (avatar.id === id) && avatar.followers);
+      if(avatar) {
+        this.setState({ displayedFollowers: avatar.followers, selectedAvatar: avatar.avatar_url});
       }
     })
   }
 
+  handleBackClick() {
+    this.setState({ displayedFollowers: null, selectedAvatar: null });
+  }
+
   render() {
-    let { avatars, displayedFollowers, imageSize } = this.state;
+    const { avatars, displayedFollowers, selectedAvatar, imageSize } = this.state;
+    const { handleBackClick, handleAvatarHover } = this;
+
+    if(displayedFollowers) {
+      return (
+        <List
+          displayedFollowers={displayedFollowers}
+          selectedAvatar={selectedAvatar}
+          handleBackClick={handleBackClick}
+        >
+        </List>
+      )
+    }
+
     if (avatars) {
       return (
         <Grid 
           avatars={avatars}
           displayedFollowers={displayedFollowers} 
-          renderFollowers={this.renderFollowers}
+          handleAvatarHover={handleAvatarHover}
           imageSize={imageSize}
         >
         </Grid>
       )
-    } else {
+    } 
       return <p>loading...</p>
-    }
   }
 }

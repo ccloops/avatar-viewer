@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import { Image } from 'react-bootstrap';
 
@@ -8,16 +8,16 @@ const Avatar = styled(Image)`
     height: ${({ imageSize }) => imageSize}px;
     cursor: ${({ hasFollowers }) => hasFollowers ? 'pointer' : 'not-allowed'};
     &:nth-child(-n + 90) {
-      padding-bottom: 5px;
+      padding-bottom: 5px;i
     }
 `;
 
-export default ({ followers, avatar_url:avatarUrl, id, renderFollowers, imageSize }) => console.log('imageSize', imageSize) || (
+export default ({ followers, avatar_url:avatarUrl, id, handleAvatarHover, imageSize }) => (
   <Avatar 
     rounded
     hasFollowers={!!followers}
     imageSize={imageSize}
     src={avatarUrl}
-    onMouseEnter={() => renderFollowers(id)} 
+    onMouseEnter={() => handleAvatarHover(id)} 
   />
 )
