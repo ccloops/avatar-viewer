@@ -8,6 +8,7 @@ const Grid = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  flex-grow: 1;
   width: 100%;
 `;
 

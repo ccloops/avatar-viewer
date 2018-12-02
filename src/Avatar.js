@@ -10,6 +10,9 @@ const Avatar = styled(Image)`
     &:nth-child(-n + 90) {
       padding-bottom: 5px;i
     }
+    -webkit-box-shadow: 0 10px 6px -6px #777;
+    -moz-box-shadow: 0 10px 6px -6px #777;
+    box-shadow: 0 10px 6px -6px #777;
 `;
 
 export default ({ followers, avatar_url:avatarUrl, id, handleAvatarHover, imageSize }) => (

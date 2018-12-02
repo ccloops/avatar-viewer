@@ -15,6 +15,7 @@ export default class App extends Component {
       avatars: null,
       displayedFollowers: null,
       selectedAvatar: null,
+      selectedOwner: null,
      }
   
     this.fetchAvatars = this.fetchAvatars.bind(this);
@@ -42,17 +43,21 @@ export default class App extends Component {
     this.state.avatars.forEach(avatarArray => {
       const avatar = avatarArray.find(avatar => (avatar.id === id) && avatar.followers);
       if(avatar) {
-        this.setState({ displayedFollowers: avatar.followers, selectedAvatar: avatar.avatar_url});
+        this.setState({ 
+          displayedFollowers: avatar.followers, 
+          selectedAvatar: avatar.avatar_url, 
+          selectedOwner: avatar.login
+        });
       }
     })
   }
 
   handleBackClick() {
-    this.setState({ displayedFollowers: null, selectedAvatar: null });
+    this.setState({ displayedFollowers: null, selectedAvatar: null, selectedOwner: null });
   }
 
   render() {
-    const { avatars, displayedFollowers, selectedAvatar, imageSize } = this.state;
+    const { avatars, displayedFollowers, selectedAvatar, selectedOwner, imageSize } = this.state;
     const { handleBackClick, handleAvatarHover } = this;
 
     if(displayedFollowers) {
@@ -60,6 +65,7 @@ export default class App extends Component {
         <List
           displayedFollowers={displayedFollowers}
           selectedAvatar={selectedAvatar}
+          selectedOwner={selectedOwner}
           handleBackClick={handleBackClick}
         >
         </List>
