@@ -34,8 +34,7 @@ express()
                 })
                 .catch(err => reject(err));
             } else {
-              // delete user.login;
-              users.push(user) && resolve();
+                users.push(user) && resolve();
             }
           });
         });

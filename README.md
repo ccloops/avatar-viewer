@@ -6,9 +6,7 @@ An application that displays the avatar of public GitHub repository owners. For 
 
 This application queries the GitHub API from the server and sends necessary data to the client application. This application displays GitHub repository owner's avatars starting at user 1000. This application fills a user's screen with as many avatars as possible without scrolling.
 
-## Prerequisites
-
-To start a dev server, you should be running node version 11.1.0 or higher.
+This application was built with Node version 11.1.0.
 
 ## Getting Started
 
@@ -35,5 +33,3 @@ Catherine Looper
 
 ## License 
 This application is licensed under the MIT License
-
-## Acknowledgments

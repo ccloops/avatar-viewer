@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import styled from 'styled-components';
 import { Image } from 'react-bootstrap';
 
@@ -13,14 +13,19 @@ const Avatar = styled(Image)`
     -webkit-box-shadow: 0 10px 6px -6px #777;
     -moz-box-shadow: 0 10px 6px -6px #777;
     box-shadow: 0 10px 6px -6px #777;
+    position: relative;
 `;
 
+
+
 export default ({ followers, avatar_url:avatarUrl, id, handleAvatarHover, imageSize }) => (
-  <Avatar 
-    rounded
-    hasFollowers={!!followers}
-    imageSize={imageSize}
-    src={avatarUrl}
-    onMouseEnter={() => handleAvatarHover(id)} 
-  />
+  <Fragment>
+    <Avatar 
+      rounded
+      hasFollowers={!!followers}
+      imageSize={imageSize}
+      src={avatarUrl}
+      onMouseEnter={() => handleAvatarHover(id)} 
+      />
+  </Fragment>
 )
