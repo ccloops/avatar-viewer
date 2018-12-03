@@ -1,0 +1,43 @@
+{
+  "name": "avatar-viewer",
+  "version": "1.0.0",
+  "description": "Avatar Viewer ",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest --verbose --coverage",
+    "start": "parcel build index.html && node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ccloops/avatar-viewer.git"
+  },
+  "keywords": [
+    "Avatar",
+    "Viewer"
+  ],
+  "author": "Catherine Looper",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ccloops/avatar-viewer/issues"
+  },
+  "homepage": "https://github.com/ccloops/avatar-viewer#readme",
+  "dependencies": {
+    "babel-core": "^6.26.3",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-react": "^6.24.1",
+    "dotenv": "^6.1.0",
+    "eslint": "^5.9.0",
+    "express": "^4.16.4",
+    "lodash": "^4.17.11",
+    "parcel": "^1.10.3",
+    "react": "^16.6.3",
+    "react-bootstrap": "^0.32.4",
+    "react-dom": "^16.6.3",
+    "styled-components": "^4.1.2",
+    "superagent": "^4.0.0"
+  },
+  "devDependencies": {
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
+    "cssnano": "^4.1.7"
+  }
+}
